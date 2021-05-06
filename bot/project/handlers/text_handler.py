@@ -53,3 +53,21 @@ def confirm_item_handler(m):
 	coordinator.send_action(m.chat.id)
 	response = processor.handle_confirm(m)
 	coordinator.send_text(response)
+
+@bot.message_handler(
+	content_types=["text"],
+	func=lambda m: (dbmanager.user_on_page(m.chat.id, pages.main) and m.text == k.main_buttons["search_item"])
+)
+def search_click_handler(m):
+	coordinator.send_action(m.chat.id)
+	response = processor.handle_search_click(m)
+	coordinator.send_text(response)
+
+@bot.message_handler(
+	content_types=["text"],
+	func=lambda m: (dbmanager.user_on_page(m.chat.id, pages.search))
+)
+def search_click_handler(m):
+	coordinator.send_action(m.chat.id)
+	response = processor.handle_search(m)
+	coordinator.send_text(response)

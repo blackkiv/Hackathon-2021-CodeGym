@@ -6,7 +6,7 @@ BASEDIR = abspath(dirname(__file__))
 BOT_SETUP = {
     "token": "1721306485:AAHmkuQAtcM_9APBEyj4N35fFhhZBRe9ZT8",
     "threaded": False,
-    "skip_pending": False,
+    "skip_pending": True,
     "parse_mode": "HTML"
 }
 

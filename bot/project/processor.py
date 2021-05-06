@@ -22,8 +22,6 @@ class Processor:
         
         page = dbmanager.get_user(message.chat.id).page
 
-        print(page)
-
         if page == pages.enter_item_title:
             return self.handle_start(message)
 
@@ -31,10 +29,13 @@ class Processor:
             return self.handle_add_item_click(message)
 
         elif page == pages.enter_item_location:
-            return self.handle_item_title_enter(message)
+            return self.handle_item_title_enter(message, True)
 
         elif page == pages.confirm_product:
             return self.handle_item_price_enter(message, True)
+
+        elif page == pages.search:
+            return self.handle_start(message)
 
 
     def handle_start(self, message):
@@ -63,9 +64,12 @@ class Processor:
             "reply_markup": k.return_back
         }
 
-    def handle_item_title_enter(self, message):
+    def handle_item_title_enter(self, message, from_return=False):
 
-        title = message.text.replace("<", "").replace(">", "").replace("/", "")
+        if not from_return:
+            title = message.text.replace("<", "").replace(">", "").replace("/", "")
+        else :
+            title = dbmanager.get_temporary_item(message.chat.id).title
 
         dbmanager.update_page(message.chat.id, pages.enter_item_price)
         dbmanager.update_temporary_item_title(message.chat.id, title)
@@ -163,6 +167,37 @@ class Processor:
             "text": m.added_product_thank,
             "reply_markup": k.main
         }
+
+    def handle_search_click(self, message):
+
+        dbmanager.update_page(message.chat.id, pages.search)
+
+        return {
+            "chat_id": message.chat.id,
+            "text": m.search_enter_title,
+            "reply_markup": k.return_back
+        }
+
+    def handle_search(self, message):
+
+        search_response = api.search_product(message.text).json()
+
+        message_text = [f"<b>{index+1}. {item['name']}</b> за {item['price']} ₴\nДе: {item['address']}" for index, item in enumerate(search_response)]
+
+        if message_text == []:
+
+            return {
+                "chat_id": message.chat.id,
+                "text": m.search_no_items,
+                "reply_markup": k.return_back
+            }
+        else: 
+            return {
+                "chat_id": message.chat.id,
+                "text": "\n\n".join(message_text),
+                "reply_markup": k.return_back
+            }
+
 
 
 processor = Processor()
