@@ -1,0 +1,9 @@
+{
+    "/items": {
+        "target": { "host":"http://77.247.19.141:7896", "protocol":"http" },
+        "secure": false,
+        "pathRewrite": {"^/items" : ""},
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}
