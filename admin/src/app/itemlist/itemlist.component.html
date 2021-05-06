@@ -1,0 +1,20 @@
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Назва товару</th>
+        <th scope="col">Цiна</th>
+        <th scope="col">Магазин</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items" class="item-container">
+        <td>{{ item.name }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.shopName }}</td>
+        <td>
+          <button (click)="deleteItem(item)" type="button" class="btn btn-danger">Видалити</button>
+        </td>
+      </tr>
+    </tbody>
+</table>
