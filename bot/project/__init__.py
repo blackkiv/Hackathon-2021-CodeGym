@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.config.from_object(config.AppConfig)
 db = SQLAlchemy(app)
 
-from project.model import Users
+from project.model import User
 
 # all handlers import
 from project.handlers.command_handler import *

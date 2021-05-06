@@ -4,7 +4,7 @@ from project import db
 from sqlalchemy import Column, Integer, String, ForeignKey
 
 
-class Users(db.Model):
+class User(db.Model):
 
     __tablename__ = "users"
     __table_args__ = {'sqlite_autoincrement': True}
@@ -14,4 +14,4 @@ class Users(db.Model):
     page = db.Column(db.String(), default=pages.no_page)
 
     def __repr__(self):
-        return f"<Users {self.chat_id}>"
+        return f"<User {self.chat_id}>"
