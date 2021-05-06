@@ -97,7 +97,7 @@ class Processor:
             price = 0.0
 
             try:
-                price = int(float(message.text) * 100) / 100
+                price = abs(int(float(message.text) * 100) / 100)
 
                 dbmanager.update_page(message.chat.id, pages.enter_item_location)
                 dbmanager.update_temporary_item_price(message.chat.id, price)
