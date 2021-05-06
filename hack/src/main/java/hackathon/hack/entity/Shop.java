@@ -17,6 +17,6 @@ public class Shop {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private Double longitude;
-    private Double latitude;
+    private String longitude;
+    private String latitude;
 }

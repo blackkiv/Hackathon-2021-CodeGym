@@ -10,7 +10,7 @@ public interface ItemService {
 
     List<Item> findAll();
 
-    List<Item> findByNameLike(String name);
-
     Item update(Item item);
+
+    void delete(String name, String shopName);
 }

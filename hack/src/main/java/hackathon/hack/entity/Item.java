@@ -15,7 +15,7 @@ public class Item {
     private Long id;
     private String name;
     private Double price;
-    @OneToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     private Shop shop;
     private String fileId;
 }

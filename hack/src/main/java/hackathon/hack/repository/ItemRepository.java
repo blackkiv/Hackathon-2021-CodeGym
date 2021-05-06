@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ItemRepository extends JpaRepository<Item, Long> {
 
-    List<Item> findByNameLike(String name);
+    List<Item> findByName(String name);
 
 //    Item findByNameAndStore
 }
