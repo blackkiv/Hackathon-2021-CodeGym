@@ -52,6 +52,3 @@ baseline.json
 
 # CLDR data
 tools/gulp-tasks/cldr/cldr-data/
-
-# Husky
-.husky/_
