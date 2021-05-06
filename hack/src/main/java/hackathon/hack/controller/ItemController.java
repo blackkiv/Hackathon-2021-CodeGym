@@ -37,7 +37,7 @@ public class ItemController {
     ) {
         return ResponseEntity.ok(
             itemService.findAll().stream()
-                .filter(item -> item.getName().contains(name.orElse(""))
+                .filter(item -> item.getName().toUpperCase().contains(name.orElse("").toUpperCase())
                     && item.getPrice() <= maxPrice.orElse(Double.MAX_VALUE)
                     && item.getPrice() >= minPrice.orElse(Double.MIN_VALUE))
                 .map(ItemDto::fromItem)
